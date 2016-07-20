@@ -16,7 +16,7 @@ class UsersController extends Controller
 
     public function create()
     {
-        echo "olar";
+        //echo "olar";
         return "heyhooo";//view("user.create");
     }
 

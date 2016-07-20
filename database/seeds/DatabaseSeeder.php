@@ -1,6 +1,6 @@
 <?php
 
-use App\Usuario;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 
@@ -15,9 +15,9 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        Usuario::create([
-            'usuario' => 'neri',
-            'senha' => strtoupper(md5('123qwe')),
+        User::create([
+            'email' => 'john@doe.com',
+            'password' => strtoupper(md5('123456')),
         ]);
 
         Model::reguard();

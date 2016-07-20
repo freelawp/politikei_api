@@ -21,6 +21,7 @@ class AuthController extends Controller
         ];
 
         // Generate encrypted password
+        // E10ADC3949BA59ABBE56E057F20F883E
         $query = DB::select("SELECT ENCODE(?, ?) AS password", [$request->input('password'), Config::get('api.encode_code_word')]);
         $credentials['password'] = $query[0]->password;
 
@@ -59,9 +60,9 @@ class AuthController extends Controller
         try {
             //authenticate in provider
             $providerUser = $this->getProviderUser($provider, $accessToken);
-     
+
             if($providerUser[$provider.'_id'] != $uuid) {
-                return response()->json(['error' => 'invalid_credentials'], 401);    
+                return response()->json(['error' => 'invalid_credentials'], 401);
             }
 
             //find or save the in our database
@@ -70,7 +71,7 @@ class AuthController extends Controller
             if (!$token = JWTAuth::fromUser($user)) {
                 return response()->json(['error' => 'invalid_credentials'], 401);
             }
-         
+
             return response()->json(compact('token'));
 
         } catch (Exception $e) {

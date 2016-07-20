@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Input;
 
 class ProposicoesController extends Controller
 {
+    public function hello()
+    {
+        return 'hello';
+    }
     /**
      * Display a listing of the resource.
      *
