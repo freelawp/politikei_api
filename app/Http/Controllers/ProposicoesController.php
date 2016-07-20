@@ -35,10 +35,10 @@ class ProposicoesController extends Controller
             $proposicoes[$key]->voto_usuario = $value->votos()->where('user_id', $user->id)->first();
             $proposicoes[$key]->parlamentar = $value->parlamentar()->first();
         }
-        
+
         $response = [ "user" => $user, "proposicoes" => $proposicoes];
 
-        
+
         return response()->json($response, 200, [], JSON_UNESCAPED_UNICODE);
     }
 
