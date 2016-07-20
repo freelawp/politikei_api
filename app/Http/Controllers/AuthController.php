@@ -21,9 +21,7 @@ class AuthController extends Controller
         ];
 
         // Generate encrypted password
-        // E10ADC3949BA59ABBE56E057F20F883E
-        $query = DB::select("SELECT ENCODE(?, ?) AS password", [$request->input('password'), Config::get('api.encode_code_word')]);
-        $credentials['password'] = $query[0]->password;
+        $credentials['password'] = strtoupper( md5( $request->input('password') ) );
 
         // Tenta autenticar
         try {
