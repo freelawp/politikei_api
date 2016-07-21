@@ -41,14 +41,14 @@ class AuthController extends Controller
                 return response()->json(['error' => 'invalid_credentials'], 401);
             }
 
+            //$token = JWTAuth::refresh($token);
+            // if no errors are encountered we can return a JWT
+            return response()->json(compact('token'));
+
         } catch (JWTException $e) {
             // something went wrong
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
-
-        $token = JWTAuth::refresh($token);
-        // if no errors are encountered we can return a JWT
-        return response()->json(compact('token'));
     }
 
     public function oAuth(Request $request, $provider)
