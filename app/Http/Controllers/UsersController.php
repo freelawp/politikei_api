@@ -8,7 +8,7 @@ use Illuminate\Http\Response;
 
 class UsersController extends Controller
 {
-    public function getIndex()
+    public function index()
     {
         $users = User::all();
         return response()->json($users);
@@ -16,22 +16,39 @@ class UsersController extends Controller
 
     public function create()
     {
-        //echo "olar";
-        return "heyhooo";//view("user.create");
+        return view("user.create");
     }
 
-    public function store()
+    public function store(StoreUserRequest $request)
     {
         $user = new User();
-        $user->name = Imput::post("name");
-        $user->email = Imput::post("email");
-        $user->password = Imput::post("password");
+        $user->name = $request->input("name");
+        $user->email = $request->input("email");
+        $user->password = $request->input("password");
 
         $user->save();
     }
 
-    public function FunctionName($value='')
+    public function show(ShowUserRequest $request)
     {
-        # code...
+        $user = new User();
+        return $user->find($request->input('id') );
     }
+
+    public function edit(EditUserRequest $request)
+    {
+    }
+
+    public function update(UpdateUserRequest $request)
+    {
+        $user = User::find($request->input('id') );
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = $request->input('password');
+
+        //TODO: Fazer uma response pimpa com textos legais;
+        return $user->save();
+    }
+
 }
