@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'email' => 'john@doe.com',
-            'password' => strtoupper( md5('123456') ),
+            'password' => strtoupper(md5('123456')),
         ]);
 
         Model::reguard();

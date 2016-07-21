@@ -16,16 +16,9 @@ class ProposicoesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($user_id)
+    public function index()
     {
-        $user = User::find($user_id);
-        if(!$user){
-            $user = new User;
-            $user->id = $user_id;
-            $user->roles = 0;
-            $user->status = 0;
-            $user->save();
-        }
+        $user = Auth::user();
 
         $proposicoes = Proposicao::select('id', 'tipo', 'nome', 'parlamentar_id', 'categoria_id', 'ementa', 'resumo', 'nome', 'camara_id', 'situacao', 'descricao', 'colaborador_id')->whereNotNull('parlamentar_id')->get();
 
@@ -36,9 +29,7 @@ class ProposicoesController extends Controller
             $proposicoes[$key]->parlamentar = $value->parlamentar()->first();
         }
 
-        $response = [ "user" => $user, "proposicoes" => $proposicoes];
-
-
+        $response = ["proposicoes" => $proposicoes];
         return response()->json($response, 200, [], JSON_UNESCAPED_UNICODE);
     }
 

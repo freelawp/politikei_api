@@ -21,7 +21,8 @@ class AuthController extends Controller
         ];
 
         // Generate encrypted password
-        $credentials['password'] = strtoupper( md5( $request->input('password') ) );
+        // todo: change to laravel default hashing
+        $credentials['password'] = strtoupper(md5($request->input('password')));
 
         // Tenta autenticar
         try {
