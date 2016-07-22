@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class UpdateUserRequest extends Request
+class EditUserRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class UpdateUserRequest extends Request
     public function rules()
     {
         return [
-            //
+            'id' => 'required|integer'
         ];
     }
 }

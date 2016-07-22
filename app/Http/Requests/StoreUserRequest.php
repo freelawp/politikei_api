@@ -13,7 +13,7 @@ class StoreUserRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,9 +24,9 @@ class StoreUserRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required'
-            'email' => 'required|email'
-            'password' => 'required'
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
         ];
     }
 }
